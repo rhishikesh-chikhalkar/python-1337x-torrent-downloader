@@ -1,3 +1,4 @@
+import sys
 from urllib.parse import urljoin
 
 import requests
@@ -60,8 +61,17 @@ def scrape_page(url):
         print("Failed to retrieve webpage.")
 
 
+# Check if command-line argument is provided
+if len(sys.argv) < 2:
+    print("Usage: python script.py <argument>")
+    sys.exit(1)
+
+# Get the command-line argument
+base_url = sys.argv[1]
+
 # Base URL of the website
-base_url = "https://1337x.to/search/death+note"
+print("Base URL:", base_url)
+
 all_magnet_links = []
 page_number = 1
 while True:
