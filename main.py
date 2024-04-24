@@ -1,11 +1,12 @@
 import sys
+from typing import List
 from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
 
-def scrape_page(url):
+def scrape_page(url: str):
     # Send a GET request to the website
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -31,7 +32,7 @@ def scrape_page(url):
         base_url = "https://1337x.to"  # Base URL of the website
         torrent_links = [urljoin(base_url, link) for link in torrent_links]
 
-        magnet_links = []
+        magnet_links: List[str] = []  # Annotate magnet_links as a list of strings = []
         # Download torrent files
         for link in torrent_links:
             # Send a GET request to the link
@@ -72,7 +73,7 @@ base_url = sys.argv[1]
 # Base URL of the website
 print("Base URL:", base_url)
 
-all_magnet_links = []
+all_magnet_links: List[str] = []
 page_number = 1
 while True:
     page_url = f"{base_url}/{page_number}/"
